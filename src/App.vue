@@ -1,13 +1,15 @@
 <template>
   <div>
-    <second-demo></second-demo>
+    <!-- <sx-other-settings></sx-other-settings> -->
+    <sx-new-plan-form></sx-new-plan-form>
   </div>
 </template>
 
 <script>
-import SecondDemo from './components/SecondDemo.vue';
+// import SxOtherSettings from './components/OtherSettings.vue';
+import SxNewPlanForm from './components/NewPlanForm.vue';
 export default {
-  components: { SecondDemo }
+  components: { SxNewPlanForm }
 }
 </script>
 
