@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue3数据响应式</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    /**
+     * 改变vm实例中的变量,实现双向绑定
+     **/
+    // 模拟vue中的data选项
+    let data = {
+      msg: 'hello world',
+      value: 7
+    }
+    let vm = new Proxy(data, {
+      get (target, key) {
+        console.log('get:', target[key])
+        return target[key]
+      },
+      set (target, key, newVal) {
+        console.log('set:', target[key])
+        if (newVal === target[key]) {
+          return
+        }
+        target[key] = newVal
+        document.querySelector('#app').textContent = target[key]
+      }
+    })
+    vm.msg = '3.1415'
+    console.log(vm.msg);
+  </script>
+</body>
+</html>

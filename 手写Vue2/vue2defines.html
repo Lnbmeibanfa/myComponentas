@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue2数据响应式</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    /**
+     * 对于绑定多个变量实现
+     **/
+    // 模拟vue中的data选项
+    let data = {
+      msg: 'hello world',
+      value: 7
+    }
+    let vm = {}
+    proxyData(data)
+    // 模拟Vue的实例
+    function proxyData(data) {
+      Object.keys(data).forEach(key => {
+        Object.defineProperty(vm, key, {
+          get() {
+            console.log('get:', key , data[key]);
+            return data[key]
+          },
+          set(newVal) {
+            console.log('set:', key, newVal);
+            if (newVal === vm[key]) {
+              return 
+            }
+            data[key] = newVal
+            document.querySelector('#app').textContent = data[key]
+          }
+        })
+      })
+    }
+    vm.msg = 'he 121613'
+    console.log(vm.msg)
+  </script>
+</body>
+</html>

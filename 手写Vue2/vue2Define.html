@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue2数据响应式</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    /**
+     * 改变vm实例中的变量,实现双向绑定
+     **/
+    // 模拟vue中的data选项
+    let data = {
+      msg: 'hello world'
+    }
+    let vm = {}
+    // 模拟Vue的实例
+    Object.defineProperty(vm, 'msg', {
+      get () {
+        console.log('get:', data.msg)
+        return data.msg
+      },
+      set (val) {
+        console.log('set:', val)
+        if (val === data.msg) {
+          return 
+        }
+        data.msg = val
+        document.querySelector('#app').innerHTML = vm.msg
+      }
+    })
+    vm.msg = 'he 123'
+    console.log(vm.msg)
+  </script>
+</body>
+</html>
